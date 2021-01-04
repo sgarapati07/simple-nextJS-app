@@ -8,7 +8,7 @@ import { NoteObj } from "./noteObj";
 
 
 export class Note extends DataObject {
-   private notesMap : SharedMap;
+   public notesMap : SharedMap;
 
    protected async initializingFirstTime() {
         this.createSharedMap("notes"); 

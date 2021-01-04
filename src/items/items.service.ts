@@ -26,25 +26,25 @@ import { Console } from "console";
 @Injectable()
 export class ItemsService {
     getItems(): Promise<void> {
-        // return this.getNotesFromContainer()
-        return this.loadContainer()
+        return this.getNotesFromContainer()
+        // return this.loadContainer()
         
       }
     
-    //   public async getNotesFromContainer() {
-    //     const documentId = "DOC28";
-    //         const createNew = true;
-    // const container = await getTinyliciousContainer(documentId, NotesContainerFactory, createNew);
-    //     // if (container !== undefined) {
-    //     //     container.close();
-    //     // }
-    //     // const dummy =     await loadContainer();
-    //     // console.log("ZZZZZZZZZZZZZZZZZZZZZZ" + dummy)
+      public async getNotesFromContainer() {
+        const documentId = "DOC30";
+            const createNew = false;
+    const container = await getTinyliciousContainer(documentId, NotesContainerFactory, createNew);
+        // if (container !== undefined) {
+        //     container.close();
+        // }
+        // const dummy =     await loadContainer();
+        // console.log("ZZZZZZZZZZZZZZZZZZZZZZ" + dummy)
         
-    //     // Get the Default Object from the Container
-    //     const defaultObject = await getDefaultObjectFromContainer<Note>(container);
-    //     console.log( "XXXXXXXXXXXXXXXXXXXXXXX" + defaultObject.);
-    //   }
+        // Get the Default Object from the Container
+        const defaultObject = await getDefaultObjectFromContainer<Note>(container);
+        console.log( "XXXXXXXXXXXXXXXXXXXXXXX" + defaultObject.notesMap.get("id").text);
+      }
     
    
     public async loadContainer() {
@@ -140,10 +140,11 @@ export class ItemsService {
             // );
             if (isNew) {
                 container = await loader.createDetachedContainer(details);
-                console.log("cccccccccccccccccc" + container.id)
                 await container.attach({ url: requestUrl });
             } else {
                 container = await loader.resolve({ url: requestUrl });
+                console.log("cccccccccccccccccc" + container.id)
+
             }
 
             // defaultObject = await getDefaultObjectFromContainer<DocumentManager>(container);
